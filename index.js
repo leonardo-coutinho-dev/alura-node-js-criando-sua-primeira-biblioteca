@@ -4,7 +4,7 @@ import fs from "fs";
 
 import chalk from "chalk";
 
-// testando a lib chalk
+// #1 TESTANDO A LIB CHALK
 
 // console.log("olá mundo, esse é o meu programa!");
 
@@ -22,6 +22,8 @@ import chalk from "chalk";
 //   chalk.cyanBright.bgGreen("Olá mundo, com esse texto agora em ciano!")
 // );
 
+// #2 TESTANDO O REGEX
+
 const textoTeste =
   "São geralmente recuperados a partir de um objeto [FileList](https://developer.mozilla.org/pt-BR/docs/Web/API/FileList) que é retornado como resultado da seleção, pelo usuário, de arquivos através do elemento [<input>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/Input), a partir do objeto [DataTransfer](https://developer.mozilla.org/pt-BR/docs/Web/API/DataTransfer) utilizado em operações de arrastar e soltar, ou a partir da API `mozGetAsFile()` em um [HTMLCanvasElement](https://developer.mozilla.org/pt-BR/docs/Web/API/HTMLCanvasElement). Em Gecko, códigos com privilégiios podem criar objetos File representando qualquer arquivo local sem a intereção do usuário (veja [Implementation notes](https://developer.mozilla.org/pt-BR/docs/Web/API/File#implementation_notes) para mais informações.).";
 
@@ -32,6 +34,8 @@ let extraiLinks = (texto) => {
 };
 
 extraiLinks(textoTeste);
+
+// #3 FUNÇÃO PARA TRATAMENTO DE ERRO
 
 let trataErro = (erro) => {
   console.log(erro);
@@ -49,7 +53,7 @@ let trataErro = (erro) => {
   }
 };
 
-// Usando o fetch();
+// #4 USANDO O fetch();
 
 // let pegaArquivo = (caminhoDoArquivo) => {
 //   const encoding = "utf-8";
@@ -61,7 +65,7 @@ let trataErro = (erro) => {
 //     .catch((err) => trataErro(err));
 // };
 
-// Usando o async/await
+// #5 USANDO O ASYNC/AWAIT
 
 let pegaArquivo = async (caminhoDoArquivo) => {
   try {
