@@ -22,6 +22,17 @@ import chalk from "chalk";
 //   chalk.cyanBright.bgGreen("Olá mundo, com esse texto agora em ciano!")
 // );
 
+const textoTeste =
+  "São geralmente recuperados a partir de um objeto [FileList](https://developer.mozilla.org/pt-BR/docs/Web/API/FileList) que é retornado como resultado da seleção, pelo usuário, de arquivos através do elemento [<input>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/Input), a partir do objeto [DataTransfer](https://developer.mozilla.org/pt-BR/docs/Web/API/DataTransfer) utilizado em operações de arrastar e soltar, ou a partir da API `mozGetAsFile()` em um [HTMLCanvasElement](https://developer.mozilla.org/pt-BR/docs/Web/API/HTMLCanvasElement). Em Gecko, códigos com privilégiios podem criar objetos File representando qualquer arquivo local sem a intereção do usuário (veja [Implementation notes](https://developer.mozilla.org/pt-BR/docs/Web/API/File#implementation_notes) para mais informações.).";
+
+let extraiLinks = (texto) => {
+  const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.][^\s]*)\)/gm;
+  const captura = regex.exec(texto);
+  console.log(captura);
+};
+
+extraiLinks(textoTeste);
+
 let trataErro = (erro) => {
   console.log(erro);
   if (erro.code === "ENOENT") {
@@ -64,7 +75,7 @@ let pegaArquivo = async (caminhoDoArquivo) => {
   }
 };
 
-pegaArquivo("./arquivo/texto.md");
+pegaArquivo("./arquivos/texto.md");
 
 // Qual a diferença entre os dois?
 
