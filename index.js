@@ -29,8 +29,9 @@ const textoTeste =
 
 let extraiLinks = (texto) => {
   const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.][^\s]*)\)/gm;
-  const captura = regex.exec(texto);
-  console.log(captura);
+  const captura = [...texto.matchAll(regex)];
+  const resultados = captura.map((item) => ({ [item[1]]: item[2] }));
+  console.log(resultados);
 };
 
 extraiLinks(textoTeste);
