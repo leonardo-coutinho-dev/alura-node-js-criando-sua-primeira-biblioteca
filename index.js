@@ -73,4 +73,16 @@ pegaArquivo("./arquivo/texto.md");
 
   Os métodos then e async/await funcionaram, mas a diferença entre eles está na escrita. Em termos de processamento e performance, elas são similares. A primeira opção tem uma escrita um pouco mais funcional, com encadeamento de funções uma abaixo da outra, enquanto a segunda faz com que escrevamos código assíncrono de uma maneira semelhante ao código síncrono.
   
+  Regular expression to capture the title of the link:
+
+  \[[^[\]]*?\]
+
+  Regular expression to capture the link itself:
+
+  \(https?:\/\/[^\s?#.][^\s]*\)
+
+  Complete regular expression, capturing the title and the link separeted in groups.
+
+  Now that we have the two regular expressions, let's move forward!
+
  */

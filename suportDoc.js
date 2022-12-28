@@ -1,7 +1,4 @@
 console.log("01");
-console.log("02");
-console.log("03");
-console.log("04");
 let timeoutfunction = () => {
   setTimeout(function () {
     let number = 1;
@@ -14,10 +11,3 @@ let timeoutfunction = () => {
 };
 timeoutfunction();
 console.log("Esse é o último!");
-console.log("05");
-console.log("06");
-console.log("07");
-console.log("08");
-console.log("09");
-console.log("10");
-console.log("11");
