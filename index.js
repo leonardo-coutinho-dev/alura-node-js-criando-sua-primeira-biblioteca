@@ -81,7 +81,9 @@ pegaArquivo("./arquivo/texto.md");
 
   \(https?:\/\/[^\s?#.][^\s]*\)
 
-  Complete regular expression, capturing the title and the link separeted in groups.
+  Complete regular expression, capturing the title and the link separeted in groups:
+
+  \[([^[\]]*?)\]\((https?:\/\/[^\s?#.][^\s]*)\)
 
   Now that we have the two regular expressions, let's move forward!
 
