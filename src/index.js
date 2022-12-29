@@ -77,7 +77,7 @@ let pegaArquivo = async (caminhoDoArquivo) => {
   }
 };
 
-pegaArquivo("./arquivos/texto.md");
+export default pegaArquivo;
 
 // Qual a diferença entre os dois?
 
