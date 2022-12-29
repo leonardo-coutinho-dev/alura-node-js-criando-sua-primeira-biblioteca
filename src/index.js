@@ -28,8 +28,9 @@ let extraiLinks = (texto) => {
   const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.][^\s]*)\)/gm;
   const captura = [...texto.matchAll(regex)];
   const resultados = captura.map((item) => ({ [item[1]]: item[2] }));
-  console.log(resultados);
-  return resultados;
+  return resultados.length !== 0
+    ? resultados
+    : "Não foram encontradas informações com os parâmetros passados!";
 };
 
 // #3 FUNÇÃO PARA TRATAMENTO DE ERRO
@@ -68,8 +69,7 @@ let pegaArquivo = async (caminhoDoArquivo) => {
   try {
     const encoding = "utf-8";
     const texto = await fs.promises.readFile(caminhoDoArquivo, encoding);
-    console.log(chalk.bgCyan(texto));
-    extraiLinks(texto);
+    return extraiLinks(texto);
   } catch (erro) {
     trataErro(erro);
   } finally {
