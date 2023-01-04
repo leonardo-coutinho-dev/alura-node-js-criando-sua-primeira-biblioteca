@@ -16,26 +16,36 @@ import chalk from "chalk";
 
 const caminho = process.argv;
 
-let imprimeResultado = (resultado, i) => {
-  if (i) {
-    console.log(chalk.magentaBright(`A lista[${i}] de itens é: `), resultado);
-  } else {
-    console.log(chalk.magentaBright("A lista de itens é: "), resultado);
-  }
+let imprimeResultado = (resultado, identificador = "") => {
+  console.log(
+    chalk.white.bgBlack(identificador),
+    chalk.magentaBright("A lista de itens é: "),
+    resultado,
+    `\n`
+  );
 };
 
 let processaTexto = async (argumento) => {
   const caminho = argumento[2];
+
+  try {
+    fs.lstatSync(caminho);
+  } catch (erro) {
+    if (erro.code === "ENOENT") {
+      console.log(
+        "Arquivo ou diretório não encontrados, verifique o caminho passado como parâmetro!"
+      );
+      return;
+    }
+  }
   if (fs.lstatSync(caminho).isFile()) {
     const resultados = await pegaArquivo(caminho);
     imprimeResultado(resultados);
   } else if (fs.lstatSync(caminho).isDirectory()) {
     const arquivos = await fs.promises.readdir(caminho);
-    let i = 1;
     arquivos.forEach(async (nomeDoArquivo) => {
       const lista = await pegaArquivo(`${caminho}/${nomeDoArquivo}`);
-      imprimeResultado(lista, i);
-      i++;
+      imprimeResultado(lista, nomeDoArquivo);
     });
   }
 };
