@@ -14,19 +14,33 @@ import pegaArquivo from "./index.js";
 
 import chalk from "chalk";
 
+import listaValidada from "./http-validacao.js";
+
 const caminho = process.argv;
 
-let imprimeResultado = (resultado, identificador = "") => {
-  console.log(
-    chalk.white.bgBlack(identificador),
-    chalk.magentaBright("A lista de itens é: "),
-    resultado,
-    `\n`
-  );
+let imprimeResultado = async (valida, resultado, identificador = "") => {
+  if (valida) {
+    console.log(
+      chalk.white.bgBlack(identificador),
+      chalk.magentaBright("A lista de itens (validada) é: "),
+      await listaValidada(resultado),
+      `\n`
+    );
+  } else {
+    console.log(
+      chalk.white.bgBlack(identificador),
+      chalk.magentaBright("A lista de itens (não validada) é: "),
+      resultado,
+      `\n`
+    );
+  }
 };
 
 let processaTexto = async (argumento) => {
   const caminho = argumento[2];
+  const valida = argumento[3];
+
+  console.log(valida);
 
   try {
     fs.lstatSync(caminho);
@@ -38,14 +52,15 @@ let processaTexto = async (argumento) => {
       return;
     }
   }
+
   if (fs.lstatSync(caminho).isFile()) {
     const resultados = await pegaArquivo(caminho);
-    imprimeResultado(resultados);
+    imprimeResultado(valida, resultados);
   } else if (fs.lstatSync(caminho).isDirectory()) {
     const arquivos = await fs.promises.readdir(caminho);
     arquivos.forEach(async (nomeDoArquivo) => {
       const lista = await pegaArquivo(`${caminho}/${nomeDoArquivo}`);
-      imprimeResultado(lista, nomeDoArquivo);
+      imprimeResultado(valida, lista, nomeDoArquivo);
     });
   }
 };
