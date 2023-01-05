@@ -18,5 +18,9 @@ let checaStatus = async (listaURLs) => {
 
 export default async function listaValidada(listaDeLinks) {
   let links = extraiLinks(listaDeLinks);
-  return await checaStatus(links);
+  const status = await checaStatus(links);
+  return listaDeLinks.map((objeto, indice) => ({
+    ...objeto,
+    status: status[indice],
+  }));
 }
