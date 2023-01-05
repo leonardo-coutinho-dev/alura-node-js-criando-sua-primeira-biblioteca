@@ -1,3 +1,11 @@
+let processaErro = (erro) => {
+  if (erro.cause.code === "ENOTFOUND") {
+    return "Link não encontrado!";
+  } else {
+    return "Ocorreu algum erro!";
+  }
+};
+
 let extraiLinks = (arrLinks) => {
   return arrLinks.map((objectLink) => {
     return Object.values(objectLink).join();
@@ -7,8 +15,12 @@ let extraiLinks = (arrLinks) => {
 let checaStatus = async (listaURLs) => {
   const arrayStatus = await Promise.all(
     listaURLs.map(async (url) => {
-      const response = await fetch(url);
-      return response.status;
+      try {
+        const response = await fetch(url);
+        return response.status;
+      } catch (err) {
+        return processaErro(err);
+      }
     })
   );
   return arrayStatus;
