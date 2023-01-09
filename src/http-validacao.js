@@ -17,7 +17,7 @@ let checaStatus = async (listaURLs) => {
     listaURLs.map(async (url) => {
       try {
         const response = await fetch(url);
-        return response.status;
+        return `${response.status} ${response.statusText}`;
       } catch (err) {
         return processaErro(err);
       }
